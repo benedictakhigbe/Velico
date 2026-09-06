@@ -536,6 +536,31 @@ Run the app:
 npm run dev
 ```
 
+## Vercel Environment Setup
+
+Before a production deploy, add the public Firebase browser config to Vercel for Production, Preview, and Development. Without these values, the login and signup screens show the Firebase credentials warning and only the demo workspace can be used.
+
+Required Vercel values:
+
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_DEMO_MODE`
+- `NEXT_PUBLIC_FIREBASE_API_KEY`
+- `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
+- `NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+- `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
+- `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
+- `NEXT_PUBLIC_FIREBASE_APP_ID`
+- `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID`
+- `FIREBASE_PROJECT_ID`
+
+For the current hosted app, `NEXT_PUBLIC_SITE_URL` should point to:
+
+```bash
+https://velico-app.vercel.app
+```
+
+After changing any `NEXT_PUBLIC_` value in Vercel, redeploy the app because those values are included in the client bundle at build time.
+
 ## Firebase Setup
 
 Enable:
