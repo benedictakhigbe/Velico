@@ -1,0 +1,46 @@
+import {
+  BarChart3,
+  Bell,
+  Bot,
+  CreditCard,
+  FileText,
+  LayoutDashboard,
+  Package,
+  Plug,
+  Receipt,
+  Settings,
+  ShoppingCart,
+  Tags,
+  Users,
+  WalletCards,
+  Zap,
+} from "lucide-react";
+
+export const appNavItems = [
+  { href: "/app", label: "Dashboard", icon: LayoutDashboard, group: "Command" },
+  { href: "/app/ai", label: "Velico AI", icon: Bot, group: "Command" },
+  { href: "/app/notifications", label: "Notifications", icon: Bell, group: "Command" },
+  { href: "/app/sales", label: "Sales / Orders", icon: ShoppingCart, group: "Operations" },
+  { href: "/app/products", label: "Products", icon: Tags, group: "Operations" },
+  { href: "/app/inventory", label: "Inventory", icon: Package, group: "Operations" },
+  { href: "/app/customers", label: "Customers", icon: Users, group: "Operations" },
+  { href: "/app/expenses", label: "Expenses", icon: WalletCards, group: "Money" },
+  { href: "/app/finance", label: "Finance", icon: WalletCards, group: "Money" },
+  { href: "/app/invoices", label: "Invoices", icon: Receipt, group: "Money" },
+  { href: "/app/reports", label: "Reports", icon: BarChart3, group: "Money" },
+  { href: "/app/staff", label: "Staff", icon: Users, group: "Growth" },
+  { href: "/app/automations", label: "Automations", icon: Zap, group: "Growth" },
+  { href: "/app/integrations", label: "Integrations", icon: Plug, group: "Growth" },
+  { href: "/app/team", label: "Team", icon: Users, group: "Workspace" },
+  { href: "/app/billing", label: "Billing", icon: CreditCard, group: "Workspace" },
+  { href: "/app/settings", label: "Settings", icon: Settings, group: "Workspace" },
+];
+
+export const quickActions = [
+  { href: "/app/sales/new", label: "New Sale", icon: ShoppingCart },
+  { href: "/app/expenses", label: "Add Expense", icon: WalletCards },
+  { href: "/app/products", label: "Add Product", icon: Package },
+  { href: "/app/invoices", label: "Create Invoice", icon: FileText },
+  { href: "/app/finance", label: "Review Finance", icon: WalletCards },
+  { href: "/app/ai", label: "Ask Velico AI", icon: Bot },
+];

@@ -1,69 +1,213 @@
-import Image from "next/image";
+import {
+  ArrowRight,
+  BarChart3,
+  Bot,
+  CheckCircle2,
+  CircleDollarSign,
+  FileText,
+  Lock,
+  PackageCheck,
+  Receipt,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Users,
+} from "lucide-react";
+import { PublicHeader } from "@/components/navigation/public-header";
+import { ButtonLink } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+
+const features = [
+  {
+    title: "Know your numbers instantly",
+    description: "Track revenue, expenses, profit estimates, debt, and daily activity without spreadsheet sprawl.",
+    icon: BarChart3,
+  },
+  {
+    title: "Stay ahead of stock and debt",
+    description: "Monitor reorder levels, inventory movement, overdue invoices, and customer balances.",
+    icon: PackageCheck,
+  },
+  {
+    title: "Ask for practical decisions",
+    description: "Get plain-language guidance on what to restock, chase, pause, or promote next.",
+    icon: Bot,
+  },
+  {
+    title: "Built for mobile work",
+    description: "Naira-first setup, responsive workflows, WhatsApp-ready reminders, and Paystack billing.",
+    icon: Smartphone,
+  },
+];
+
+const plans = [
+  { name: "Starter", price: "NGN 5,000/mo", yearly: "NGN 50,000/yr", detail: "Core tools for solo business owners." },
+  { name: "Growth", price: "NGN 12,000/mo", yearly: "NGN 120,000/yr", detail: "More staff access, AI usage, and reporting." },
+  { name: "Business", price: "NGN 30,000/mo", yearly: "NGN 300,000/yr", detail: "Permissions, integrations, and priority support." },
+];
+
+const previewMetrics = [
+  { label: "Sales today", value: "NGN 118.5K", icon: CircleDollarSign },
+  { label: "Expenses", value: "NGN 32K", icon: Receipt },
+  { label: "Customers owing", value: "3", icon: Users },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-[var(--background)]">
+      <PublicHeader activePath="/" />
+
+      <section className="velico-hero-scene relative min-h-[92svh] overflow-hidden px-4 pb-12 pt-24 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div data-velico-animate className="relative z-10 py-10">
+            <p className="inline-flex h-9 items-center gap-2 rounded-[8px] border border-[var(--border)] bg-[var(--surface)] px-3 text-sm font-semibold text-[var(--brand-blue)] shadow-sm">
+              <Sparkles className="size-4" aria-hidden="true" />
+              AI business OS for Nigerian SMEs
+            </p>
+            <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-normal text-[var(--heading)] sm:text-7xl">
+              Velico
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
+              Run sales, stock, customers, expenses, invoices, analytics, and useful AI guidance from one calm workspace.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/signup" className="h-12 px-6">
+                Start Free
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </ButtonLink>
+              <ButtonLink href="/how-it-works" variant="secondary" className="h-12 px-6">
+                See how it works
+              </ButtonLink>
+            </div>
+            <div className="mt-8 grid gap-3 text-sm text-[var(--foreground)] sm:grid-cols-3">
+              {["14-day trial", "Naira-first", "Mobile friendly"].map((item) => (
+                <span key={item} className="flex items-center gap-2">
+                  <CheckCircle2 className="size-4 text-[var(--brand-blue)]" aria-hidden="true" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div data-velico-animate className="relative min-h-[520px]">
+            <div className="absolute left-4 top-4 h-44 w-56 rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl velico-float-panel sm:w-64">
+              <p className="text-sm font-semibold text-[var(--heading)]">Today</p>
+              <p className="mt-4 text-3xl font-semibold text-[var(--brand-blue)]">NGN 1.84M</p>
+              <p className="mt-2 text-sm text-[var(--muted)]">Projected monthly revenue</p>
+              <div className="mt-5 h-2 rounded-full bg-[var(--surface-muted)]">
+                <div className="h-2 w-2/3 rounded-full bg-[var(--brand-blue)]" />
+              </div>
+            </div>
+
+            <div className="absolute right-0 top-24 grid w-[min(100%,30rem)] gap-3 rounded-[8px] border border-[var(--border-strong)] bg-[color-mix(in_srgb,var(--surface)_92%,transparent)] p-4 shadow-2xl backdrop-blur velico-float-panel">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-semibold text-[var(--heading)]">Operations board</p>
+                <span className="rounded-[8px] bg-[var(--brand-soft)] px-2 py-1 text-xs font-semibold text-[var(--brand-blue)]">
+                  Live
+                </span>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {previewMetrics.map((metric) => (
+                  <div key={metric.label} className="rounded-[8px] border border-[var(--border)] bg-[var(--surface-muted)] p-3">
+                    <metric.icon className="size-4 text-[var(--brand-blue)]" aria-hidden="true" />
+                    <p className="mt-4 text-xs text-[var(--muted)]">{metric.label}</p>
+                    <p className="mt-1 text-lg font-semibold text-[var(--heading)]">{metric.value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="grid gap-2">
+                {["Follow up VEL-0002", "Restock Hair Treatment Kit", "Review logistics spend"].map((item) => (
+                  <div key={item} className="flex items-center gap-3 rounded-[8px] border border-[var(--border)] bg-[var(--surface)] px-3 py-3">
+                    <span className="size-2 rounded-full bg-[var(--brand-blue)] velico-flow-line" />
+                    <span className="text-sm font-medium text-[var(--foreground)]">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="absolute bottom-10 left-0 w-[min(100%,26rem)] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl velico-float-panel">
+              <div className="flex items-start gap-3">
+                <span className="grid size-9 shrink-0 place-items-center rounded-[8px] bg-[var(--brand-soft)] text-[var(--brand-blue)]">
+                  <Bot className="size-5" aria-hidden="true" />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-[var(--heading)]">Velico copilot</p>
+                  <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                    Cash is healthy today. Your fastest win is collecting one overdue invoice before adding new stock.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section id="how" className="border-y border-[var(--border)] bg-[var(--surface)] py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div data-velico-animate className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--brand-blue)]">
+              How it works
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-[var(--heading)]">
+              Daily work becomes decisions you can act on
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {features.map((feature) => (
+              <Card key={feature.title} data-velico-animate data-velico-hover className="p-5">
+                <feature.icon className="size-6 text-[var(--brand-blue)]" aria-hidden="true" />
+                <h3 className="mt-5 text-lg font-semibold text-[var(--heading)]">{feature.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{feature.description}</p>
+              </Card>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section id="pricing" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div data-velico-animate>
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--brand-blue)]">
+              Pricing
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-[var(--heading)]">
+              Start lean, upgrade as your team grows
+            </h2>
+            <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
+              Choose the tier that matches your operating rhythm. Paid plans unlock higher usage and team capacity.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {plans.map((plan) => (
+              <Card key={plan.name} data-velico-animate data-velico-hover className="p-5">
+                <h3 className="text-lg font-semibold text-[var(--heading)]">{plan.name}</h3>
+                <p className="mt-3 text-2xl font-semibold text-[var(--brand-blue)]">{plan.price}</p>
+                <p className="mt-1 text-sm font-semibold text-[var(--heading)]">{plan.yearly}</p>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{plan.detail}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="logo-gradient py-16 text-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
+          {[
+            [ShieldCheck, "Rules-backed multi-tenancy", "Each organization owns its records with Firebase Auth and Firestore Security Rules."],
+            [Lock, "Server-side secrets", "Service keys, AI calls, and payment verification stay off the client."],
+            [FileText, "Reports that travel", "Statements, invoices, and analytics are structured for sharing and export."],
+          ].map(([Icon, title, description]) => {
+            const IconComponent = Icon as typeof ShieldCheck;
+            return (
+              <div key={String(title)} data-velico-animate>
+                <IconComponent className="size-6 text-white" aria-hidden="true" />
+                <h3 className="mt-4 text-lg font-semibold">{title as string}</h3>
+                <p className="mt-2 text-sm leading-6 text-white/85">{description as string}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    </main>
   );
 }

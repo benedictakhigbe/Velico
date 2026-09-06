@@ -1,0 +1,42 @@
+[
+  {
+    "code": "trial",
+    "name": "Free Trial",
+    "monthlyPriceNgn": 0,
+    "yearlyPriceNgn": 0,
+    "staffLimit": 1,
+    "aiMessagesMonthly": 20,
+    "features": { "trialDays": 14, "exports": false },
+    "isActive": true
+  },
+  {
+    "code": "starter",
+    "name": "Starter",
+    "monthlyPriceNgn": 5000,
+    "yearlyPriceNgn": 50000,
+    "staffLimit": 1,
+    "aiMessagesMonthly": 100,
+    "features": { "sales": true, "inventory": true, "invoices": true },
+    "isActive": true
+  },
+  {
+    "code": "growth",
+    "name": "Growth",
+    "monthlyPriceNgn": 12000,
+    "yearlyPriceNgn": 120000,
+    "staffLimit": 5,
+    "aiMessagesMonthly": 500,
+    "features": { "advancedReports": true, "exports": true, "automation": true },
+    "isActive": true
+  },
+  {
+    "code": "business",
+    "name": "Business",
+    "monthlyPriceNgn": 30000,
+    "yearlyPriceNgn": 300000,
+    "staffLimit": 20,
+    "aiMessagesMonthly": 1500,
+    "features": { "advancedPermissions": true, "prioritySupport": true, "integrations": true },
+    "isActive": true
+  }
+]

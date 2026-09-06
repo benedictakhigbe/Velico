@@ -1,0 +1,85 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function memberDoc(orgId) {
+      return /databases/$(database)/documents/organizationMembers/$(orgId + "_" + request.auth.uid);
+    }
+
+    function isOrgMember(orgId) {
+      return signedIn()
+        && exists(memberDoc(orgId))
+        && get(memberDoc(orgId)).data.status == "active";
+    }
+
+    function hasOrgRole(orgId, roles) {
+      return isOrgMember(orgId)
+        && get(memberDoc(orgId)).data.role in roles;
+    }
+
+    match /plans/{planCode} {
+      allow read: if resource.data.isActive == true;
+      allow write: if false;
+    }
+
+    match /profiles/{userId} {
+      allow read, create, update: if signedIn() && request.auth.uid == userId;
+      allow delete: if false;
+    }
+
+    match /organizations/{orgId} {
+      allow read: if isOrgMember(orgId);
+      allow create: if signedIn() && request.resource.data.ownerId == request.auth.uid;
+      allow update: if hasOrgRole(orgId, ["owner", "manager"]);
+      allow delete: if false;
+    }
+
+    match /organizationMembers/{memberId} {
+      allow read: if signedIn()
+        && (resource.data.userId == request.auth.uid || isOrgMember(resource.data.organizationId));
+      allow create, update: if signedIn()
+        && hasOrgRole(request.resource.data.organizationId, ["owner", "manager"]);
+      allow delete: if signedIn()
+        && hasOrgRole(resource.data.organizationId, ["owner"]);
+    }
+
+    match /businessSettings/{orgId} {
+      allow read: if isOrgMember(orgId);
+      allow create, update: if hasOrgRole(orgId, ["owner", "manager"]);
+      allow delete: if false;
+    }
+
+    match /{collectionName}/{docId} {
+      allow read: if collectionName in [
+        "productCategories", "products", "inventoryMovements", "customers", "sales",
+        "saleItems", "expenseCategories", "expenses", "invoices", "invoiceItems",
+        "invoicePayments", "notifications", "aiConversations", "aiMessages",
+        "aiUsage", "subscriptions", "billingEvents", "auditLogs", "fileUploads"
+      ] && isOrgMember(resource.data.organizationId);
+
+      allow create: if collectionName in [
+        "productCategories", "products", "inventoryMovements", "customers", "sales",
+        "saleItems", "expenseCategories", "expenses", "invoices", "invoiceItems",
+        "invoicePayments", "notifications", "aiConversations", "aiMessages",
+        "auditLogs", "fileUploads"
+      ] && isOrgMember(request.resource.data.organizationId);
+
+      allow update: if collectionName in [
+        "productCategories", "products", "inventoryMovements", "customers", "sales",
+        "saleItems", "expenseCategories", "expenses", "invoices", "invoiceItems",
+        "invoicePayments", "notifications", "aiConversations", "aiMessages",
+        "auditLogs", "fileUploads"
+      ] && isOrgMember(resource.data.organizationId)
+        && request.resource.data.organizationId == resource.data.organizationId;
+
+      allow delete: if collectionName in [
+        "productCategories", "products", "customers", "expenses", "invoices",
+        "aiConversations", "fileUploads"
+      ] && hasOrgRole(resource.data.organizationId, ["owner", "manager"]);
+    }
+  }
+}

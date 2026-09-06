@@ -1,26 +1,307 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #f6fbff;
+  --foreground: #0b1730;
+  --surface: #ffffff;
+  --surface-muted: #edf8ff;
+  --surface-strong: #dff4ff;
+  --border: #cce9fb;
+  --border-strong: #8bdcff;
+  --muted: #526173;
+  --heading: #061a55;
+  --brand-cyan: #41c7f4;
+  --brand-sky: #238bff;
+  --brand-blue: #085df4;
+  --brand-deep: #053bd5;
+  --brand-ink: #061a55;
+  --brand-soft: #e8f8ff;
+  --danger: #d92d20;
+  --danger-soft: #fff0eb;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #050b1c;
+  --foreground: #edf8ff;
+  --surface: #0b1430;
+  --surface-muted: #101d3f;
+  --surface-strong: #14295f;
+  --border: #1f376c;
+  --border-strong: #238bff;
+  --muted: #a8bad4;
+  --heading: #f6fbff;
+  --brand-cyan: #5bd8ff;
+  --brand-sky: #2e98ff;
+  --brand-blue: #1d6dff;
+  --brand-deep: #5a7cff;
+  --brand-ink: #e8f8ff;
+  --brand-soft: #0f2a5f;
+  --danger: #ff8a7a;
+  --danger-soft: #351515;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--brand-cyan) 14%, transparent), transparent 32rem),
+    linear-gradient(180deg, var(--background), color-mix(in srgb, var(--surface-muted) 48%, var(--background)));
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  outline-color: var(--brand-blue);
+}
+
+button,
+a,
+input,
+select,
+textarea,
+.velico-card {
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand-blue) 12%, transparent);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand-cyan) 28%, transparent);
+}
+
+.logo-gradient {
+  background:
+    radial-gradient(circle at 18% 66%, color-mix(in srgb, var(--brand-cyan) 18%, transparent), transparent 28%),
+    linear-gradient(135deg, var(--brand-cyan), var(--brand-sky) 48%, var(--brand-deep));
+}
+
+.velico-card {
+  position: relative;
+  overflow: hidden;
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform-style: preserve-3d;
+}
+
+.velico-card[data-velico-hover]::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    280px circle at var(--spot-x, 50%) var(--spot-y, 0%),
+    color-mix(in srgb, var(--brand-cyan) 14%, transparent),
+    transparent 42%
+  );
+  opacity: 0;
+  transition: opacity 180ms ease;
+  content: "";
+}
+
+.velico-card[data-velico-hover]:hover {
+  border-color: color-mix(in srgb, var(--brand-blue) 42%, var(--border));
+  box-shadow: 0 18px 45px color-mix(in srgb, var(--brand-blue) 12%, transparent);
+}
+
+.velico-card[data-velico-hover]:hover::before {
+  opacity: 1;
+}
+
+.velico-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.velico-ripple {
+  position: absolute;
+  z-index: -1;
+  border-radius: 999px;
+  pointer-events: none;
+  background: currentColor;
+}
+
+.velico-hero-scene {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--border) 42%, transparent) 1px, transparent 1px),
+    radial-gradient(circle at 76% 30%, color-mix(in srgb, var(--brand-cyan) 30%, transparent), transparent 26rem),
+    radial-gradient(circle at 20% 80%, color-mix(in srgb, var(--brand-sky) 18%, transparent), transparent 22rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--surface-muted) 84%, transparent));
+  background-size: 44px 44px, 44px 44px, auto, auto, auto;
+}
+
+.velico-flow-line {
+  animation: velico-flow 4.8s ease-in-out infinite;
+}
+
+.velico-meter-bar {
+  animation: velico-meter 2.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  transform-origin: bottom;
+}
+
+.velico-float-panel {
+  animation: velico-panel-float 5.2s ease-in-out infinite;
+}
+
+.velico-float-panel:nth-child(2) {
+  animation-delay: 500ms;
+}
+
+.velico-float-panel:nth-child(3) {
+  animation-delay: 950ms;
+}
+
+.velico-mobile-drawer {
+  animation: velico-drawer-enter 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.velico-thinking {
+  position: relative;
+  overflow: hidden;
+}
+
+.velico-thinking::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--brand-cyan) 16%, transparent),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: velico-shimmer 1.35s ease-in-out infinite;
+  content: "";
+}
+
+.velico-loader-mark {
+  animation: velico-logo-float 1.35s ease-in-out infinite;
+}
+
+.velico-loader-mark::before {
+  position: absolute;
+  inset: -6px;
+  border: 2px solid color-mix(in srgb, var(--brand-blue) 22%, transparent);
+  border-top-color: var(--brand-cyan);
+  border-radius: 12px;
+  animation: velico-loader-ring 1s linear infinite;
+  content: "";
+}
+
+@keyframes velico-logo-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-4px) scale(1.04);
+  }
+}
+
+@keyframes velico-loader-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes velico-drawer-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes velico-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes velico-flow {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(-8px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(8px);
+  }
+}
+
+@keyframes velico-panel-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes velico-meter {
+  0%,
+  100% {
+    transform: scaleY(0.72);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .velico-loader-mark,
+  .velico-loader-mark::before {
+    animation: none;
+  }
+}
+
+.dark .theme-light-icon {
+  display: none;
+}
+
+.dark .theme-dark-icon {
+  display: block;
 }
