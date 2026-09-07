@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { VelicoMark } from "@/components/brand/velico-mark";
 import { canUseRoute } from "@/lib/billing/plan-access";
@@ -58,50 +59,58 @@ export function AppNavigation({ planCode }: AppNavigationProps) {
 
 export function MobileNavigationButton({ planCode }: AppNavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const portalRoot = typeof document === "undefined" ? null : document.body;
+
+  const drawer = isOpen ? (
+    <div className="fixed inset-0 z-[120] lg:hidden">
+      <button
+        type="button"
+        className="absolute inset-0 bg-black/45 backdrop-blur-sm"
+        aria-label="Close navigation"
+        onClick={() => setIsOpen(false)}
+      />
+      <div
+        className="velico-mobile-drawer absolute inset-y-0 left-0 flex w-[min(22rem,calc(100vw-1rem))] flex-col border-r border-[var(--border)] bg-[var(--surface)] shadow-2xl"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Workspace navigation"
+      >
+        <div className="flex min-h-16 items-center justify-between gap-3 border-b border-[var(--border)] px-4 sm:px-5">
+          <div className="flex min-w-0 items-center gap-3">
+            <VelicoMark className="size-9 shrink-0" />
+            <div className="min-w-0">
+              <p className="truncate text-base font-bold text-[var(--heading)]">Velico</p>
+              <p className="text-xs text-[var(--muted)]">Business workspace</p>
+            </div>
+          </div>
+          <Button
+            variant="ghost"
+            className="size-10 shrink-0 p-0"
+            aria-label="Close navigation"
+            onClick={() => setIsOpen(false)}
+          >
+            <X className="size-5" />
+          </Button>
+        </div>
+        <div className="min-h-0 flex-1 overflow-y-auto" onClick={() => setIsOpen(false)}>
+          <AppNavigation planCode={planCode} />
+        </div>
+      </div>
+    </div>
+  ) : null;
 
   return (
     <>
       <Button
-        variant="ghost"
-        className="size-10 p-0 lg:hidden"
+        variant="secondary"
+        className="size-10 shrink-0 p-0 lg:hidden"
         aria-label="Open navigation"
         aria-expanded={isOpen}
         onClick={() => setIsOpen(true)}
       >
         <Menu className="size-5" />
       </Button>
-      {isOpen ? (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <button
-            type="button"
-            className="absolute inset-0 bg-black/35 backdrop-blur-sm"
-            aria-label="Close navigation"
-            onClick={() => setIsOpen(false)}
-          />
-          <div className="velico-mobile-drawer absolute inset-y-0 left-0 w-[min(20rem,calc(100vw-2rem))] border-r border-[var(--border)] bg-[var(--surface)] shadow-2xl">
-            <div className="flex h-16 items-center justify-between gap-3 border-b border-[var(--border)] px-5">
-              <div className="flex items-center gap-3">
-                <VelicoMark className="size-9" />
-                <div>
-                  <p className="text-base font-bold text-[var(--heading)]">Velico</p>
-                  <p className="text-xs text-[var(--muted)]">Business workspace</p>
-                </div>
-              </div>
-              <Button
-                variant="ghost"
-                className="size-10 p-0"
-                aria-label="Close navigation"
-                onClick={() => setIsOpen(false)}
-              >
-                <X className="size-5" />
-              </Button>
-            </div>
-            <div onClick={() => setIsOpen(false)}>
-              <AppNavigation planCode={planCode} />
-            </div>
-          </div>
-        </div>
-      ) : null}
+      {portalRoot && drawer ? createPortal(drawer, portalRoot) : drawer}
     </>
   );
 }
