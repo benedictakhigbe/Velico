@@ -12,6 +12,7 @@ import {
   signInWithPhoneNumber,
   updatePassword,
 } from "firebase/auth";
+import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { getFirebaseAuth, hasFirebaseBrowserConfig } from "@/lib/firebase/client";
@@ -52,6 +53,7 @@ export function FirebaseAuthForm({ mode }: FirebaseAuthFormProps) {
   const [message, setMessage] = useState<string | null>(null);
   const [signupMethod, setSignupMethod] = useState<"email" | "phone">("email");
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
   const [isPending, startTransition] = useTransition();
   const recaptchaVerifier = useRef<RecaptchaVerifier | null>(null);
   const firebaseReady = hasFirebaseBrowserConfig();
@@ -263,15 +265,36 @@ export function FirebaseAuthForm({ mode }: FirebaseAuthFormProps) {
         <Field label="Email" name="email" type="email" autoComplete="email" required />
       ) : null}
       {mode !== "forgot" && !(mode === "signup" && signupMethod === "phone") ? (
-        <Field
-          label={mode === "reset" ? "New password" : "Password"}
-          name="password"
-          type="password"
-          minLength={8}
-          autoComplete={mode === "login" ? "current-password" : "new-password"}
-          required
-          hint={mode === "signup" ? "Use at least 8 characters." : undefined}
-        />
+        <label className="grid gap-2 text-sm font-medium text-[var(--foreground)]" htmlFor="password">
+          <span>{mode === "reset" ? "New password" : "Password"}</span>
+          <span className="relative">
+            <input
+              id="password"
+              name="password"
+              type={showPassword ? "text" : "password"}
+              minLength={8}
+              autoComplete={mode === "login" ? "current-password" : "new-password"}
+              required
+              className="h-11 w-full rounded-[8px] border border-[var(--border)] bg-[var(--surface)] px-3 pr-12 text-base text-[var(--foreground)] shadow-sm transition placeholder:text-[var(--muted)] hover:border-[var(--border-strong)] focus:border-[var(--brand-blue)]"
+            />
+            <button
+              type="button"
+              className="absolute right-1.5 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded-[8px] text-[var(--muted)] transition hover:bg-[var(--surface-muted)] hover:text-[var(--heading)]"
+              onClick={() => setShowPassword((current) => !current)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              title={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? (
+                <EyeOff className="size-4" aria-hidden="true" />
+              ) : (
+                <Eye className="size-4" aria-hidden="true" />
+              )}
+            </button>
+          </span>
+          {mode === "signup" ? (
+            <span className="text-xs font-normal text-[var(--muted)]">Use at least 8 characters.</span>
+          ) : null}
+        </label>
       ) : null}
       <Button type="submit" className="w-full" disabled={isPending || !canSubmit}>
         {isPending ? "Please wait..." : submitLabel}

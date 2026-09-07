@@ -14,6 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import { PublicHeader } from "@/components/navigation/public-header";
+import { PublicFooter } from "@/components/navigation/public-footer";
 import { ButtonLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -57,14 +58,14 @@ export default function Home() {
     <main className="min-h-screen bg-[var(--background)]">
       <PublicHeader activePath="/" />
 
-      <section className="velico-hero-scene relative min-h-[92svh] overflow-hidden px-4 pb-12 pt-24 sm:px-6 lg:px-8">
+      <section className="velico-hero-scene relative overflow-hidden px-4 pb-12 pt-24 sm:px-6 lg:min-h-[92svh] lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div data-velico-animate className="relative z-10 py-10">
             <p className="inline-flex h-9 items-center gap-2 rounded-[8px] border border-[var(--border)] bg-[var(--surface)] px-3 text-sm font-semibold text-[var(--brand-blue)] shadow-sm">
               <Sparkles className="size-4" aria-hidden="true" />
               AI business OS for Nigerian SMEs
             </p>
-            <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-normal text-[var(--heading)] sm:text-7xl">
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-normal text-[var(--heading)] sm:text-6xl lg:text-7xl">
               Velico
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
@@ -89,8 +90,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div data-velico-animate className="relative min-h-[520px]">
-            <div className="absolute left-4 top-4 h-44 w-56 rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl velico-float-panel sm:w-64">
+          <div data-velico-animate className="relative grid gap-4 sm:min-h-[520px]">
+            <div className="velico-float-panel relative h-auto w-full rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl sm:absolute sm:left-4 sm:top-4 sm:h-44 sm:w-64">
               <p className="text-sm font-semibold text-[var(--heading)]">Today</p>
               <p className="mt-4 text-3xl font-semibold text-[var(--brand-blue)]">NGN 1.84M</p>
               <p className="mt-2 text-sm text-[var(--muted)]">Projected monthly revenue</p>
@@ -99,7 +100,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="absolute right-0 top-24 grid w-[min(100%,30rem)] gap-3 rounded-[8px] border border-[var(--border-strong)] bg-[color-mix(in_srgb,var(--surface)_92%,transparent)] p-4 shadow-2xl backdrop-blur velico-float-panel">
+            <div className="velico-float-panel relative grid w-full gap-3 rounded-[8px] border border-[var(--border-strong)] bg-[color-mix(in_srgb,var(--surface)_92%,transparent)] p-4 shadow-2xl backdrop-blur sm:absolute sm:right-0 sm:top-24 sm:w-[min(100%,30rem)]">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold text-[var(--heading)]">Operations board</p>
                 <span className="rounded-[8px] bg-[var(--brand-soft)] px-2 py-1 text-xs font-semibold text-[var(--brand-blue)]">
@@ -125,7 +126,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="absolute bottom-10 left-0 w-[min(100%,26rem)] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl velico-float-panel">
+            <div className="velico-float-panel relative w-full rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl sm:absolute sm:bottom-10 sm:left-0 sm:w-[min(100%,26rem)]">
               <div className="flex items-start gap-3">
                 <span className="grid size-9 shrink-0 place-items-center rounded-[8px] bg-[var(--brand-soft)] text-[var(--brand-blue)]">
                   <Bot className="size-5" aria-hidden="true" />
@@ -148,7 +149,7 @@ export default function Home() {
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--brand-blue)]">
               How it works
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-[var(--heading)]">
+            <h2 className="mt-3 text-2xl font-semibold text-[var(--heading)] sm:text-3xl">
               Daily work becomes decisions you can act on
             </h2>
           </div>
@@ -170,7 +171,7 @@ export default function Home() {
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--brand-blue)]">
               Pricing
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-[var(--heading)]">
+            <h2 className="mt-3 text-2xl font-semibold text-[var(--heading)] sm:text-3xl">
               Start lean, upgrade as your team grows
             </h2>
             <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
@@ -208,6 +209,7 @@ export default function Home() {
           })}
         </div>
       </section>
+      <PublicFooter />
     </main>
   );
 }

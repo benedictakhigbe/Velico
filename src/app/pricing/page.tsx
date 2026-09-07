@@ -1,5 +1,6 @@
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { PublicHeader } from "@/components/navigation/public-header";
+import { PublicFooter } from "@/components/navigation/public-footer";
 import { ButtonLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { paystackPlans } from "@/lib/billing/plans";
@@ -24,7 +25,7 @@ export default function PricingPage() {
               <Sparkles className="size-4" aria-hidden="true" />
               Simple business pricing
             </p>
-            <h1 className="mt-6 text-4xl font-semibold text-[var(--heading)] sm:text-6xl">
+            <h1 className="mt-6 text-3xl font-semibold text-[var(--heading)] sm:text-5xl lg:text-6xl">
               Pick the plan that matches your stage
             </h1>
             <p className="mt-5 text-lg leading-8 text-[var(--muted)]">
@@ -61,6 +62,7 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
+      <PublicFooter />
     </main>
   );
 }

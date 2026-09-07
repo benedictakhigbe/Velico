@@ -14,6 +14,7 @@ import {
   WalletCards,
 } from "lucide-react";
 import { PublicHeader } from "@/components/navigation/public-header";
+import { PublicFooter } from "@/components/navigation/public-footer";
 import { ButtonLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -69,13 +70,13 @@ export default function HowItWorksPage() {
       <PublicHeader activePath="/how-it-works" backHref="/" backLabel="Home" />
 
       <section className="velico-hero-scene relative isolate overflow-hidden px-4 pb-16 pt-24 sm:px-6 lg:px-8">
-        <div className="mx-auto grid min-h-[86svh] max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:min-h-[86svh] lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
           <div data-velico-animate className="relative z-10 py-10">
             <p className="inline-flex h-9 items-center gap-2 rounded-[8px] border border-[var(--border)] bg-[var(--surface)] px-3 text-sm font-semibold text-[var(--brand-blue)] shadow-sm">
               <Sparkles className="size-4" aria-hidden="true" />
               From daily entries to clear decisions
             </p>
-            <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-normal text-[var(--heading)] sm:text-7xl">
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-normal text-[var(--heading)] sm:text-6xl lg:text-7xl">
               How Velico works
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
@@ -92,8 +93,8 @@ export default function HowItWorksPage() {
             </div>
           </div>
 
-          <div data-velico-animate className="relative min-h-[620px]">
-            <div className="absolute inset-x-0 top-10 mx-auto h-[30rem] w-[min(100%,46rem)] rounded-[8px] border border-[var(--border-strong)] bg-[color-mix(in_srgb,var(--surface)_92%,transparent)] p-4 shadow-2xl backdrop-blur">
+          <div data-velico-animate className="relative grid gap-4 sm:min-h-[620px]">
+            <div className="relative mx-auto h-auto w-full rounded-[8px] border border-[var(--border-strong)] bg-[color-mix(in_srgb,var(--surface)_92%,transparent)] p-4 shadow-2xl backdrop-blur sm:absolute sm:inset-x-0 sm:top-10 sm:h-[30rem] sm:w-[min(100%,46rem)]">
               <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
                 <div>
                   <p className="text-sm font-semibold text-[var(--heading)]">Velico command view</p>
@@ -103,7 +104,7 @@ export default function HowItWorksPage() {
                   Synced
                 </span>
               </div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
                 {operatingModules.slice(0, 3).map((module) => (
                   <div key={module.label} className="rounded-[8px] border border-[var(--border)] bg-[var(--surface-muted)] p-3">
                     <module.icon className="size-4 text-[var(--brand-blue)]" aria-hidden="true" />
@@ -112,7 +113,7 @@ export default function HowItWorksPage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-4 grid gap-3 lg:grid-cols-[1fr_0.86fr]">
+              <div className="mt-4 grid gap-3 md:grid-cols-[1fr_0.86fr]">
                 <div className="rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4">
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-semibold text-[var(--heading)]">Cash flow path</p>
@@ -142,13 +143,13 @@ export default function HowItWorksPage() {
               </div>
             </div>
 
-            <div className="absolute bottom-6 left-0 w-[min(88%,20rem)] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl velico-float-panel">
+            <div className="velico-float-panel relative w-full rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl sm:absolute sm:bottom-6 sm:left-0 sm:w-[min(88%,20rem)]">
               <p className="text-sm font-semibold text-[var(--heading)]">Decision made simpler</p>
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
                 Your dashboard moves from record keeping to decision support as each module fills with data.
               </p>
             </div>
-            <div className="absolute right-0 top-0 w-[min(82%,18rem)] rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl velico-float-panel">
+            <div className="velico-float-panel relative w-full rounded-[8px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-xl sm:absolute sm:right-0 sm:top-0 sm:w-[min(82%,18rem)]">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="size-5 text-[var(--brand-blue)]" aria-hidden="true" />
                 <p className="text-sm font-semibold text-[var(--heading)]">Workspace scoped</p>
@@ -167,7 +168,7 @@ export default function HowItWorksPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--brand-blue)]">
               The workflow
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-[var(--heading)]">
+            <h2 className="mt-3 text-2xl font-semibold text-[var(--heading)] sm:text-3xl">
               Four stages, one operating rhythm
             </h2>
           </div>
@@ -192,7 +193,7 @@ export default function HowItWorksPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--brand-blue)]">
               What connects
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-[var(--heading)]">
+            <h2 className="mt-3 text-2xl font-semibold text-[var(--heading)] sm:text-3xl">
               Every module feeds the same business picture
             </h2>
             <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
@@ -218,7 +219,7 @@ export default function HowItWorksPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-white/80">
               The outcome
             </p>
-            <h2 className="mt-3 text-4xl font-semibold">
+            <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
               Velico helps the owner spend less time hunting for answers.
             </h2>
             <p className="mt-5 max-w-2xl text-sm leading-6 text-white/85">
@@ -235,6 +236,7 @@ export default function HowItWorksPage() {
           </div>
         </div>
       </section>
+      <PublicFooter />
     </main>
   );
 }

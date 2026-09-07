@@ -5,7 +5,7 @@ import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { ButtonLink } from "@/components/ui/button";
 
 type PublicHeaderProps = {
-  activePath?: "/" | "/how-it-works" | "/pricing";
+  activePath?: "/" | "/how-it-works" | "/pricing" | "/task-calculator";
   backHref?: string;
   backLabel?: string;
 };
@@ -13,13 +13,14 @@ type PublicHeaderProps = {
 const links = [
   { href: "/how-it-works", label: "How it works" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/task-calculator", label: "Calculator" },
   { href: "/login", label: "Login" },
 ] as const;
 
 export function PublicHeader({ activePath, backHref, backLabel = "Back" }: PublicHeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_90%,transparent)] backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:gap-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-2 px-3 py-2 sm:gap-3 sm:px-6 lg:px-8">
         <div className="flex min-w-0 items-center gap-3">
           {backHref ? (
             <Link
@@ -30,15 +31,15 @@ export function PublicHeader({ activePath, backHref, backLabel = "Back" }: Publi
               <span className="sr-only sm:not-sr-only">{backLabel}</span>
             </Link>
           ) : null}
-          <Link href="/" className="flex min-w-0 items-center gap-3">
-            <VelicoMark />
+          <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <VelicoMark className="size-9 sm:size-10" />
             <div className="min-w-0">
-              <p className="truncate text-lg font-bold text-[var(--heading)]">Velico</p>
+              <p className="truncate text-base font-bold text-[var(--heading)] sm:text-lg">Velico</p>
               <p className="hidden text-xs text-[var(--muted)] sm:block">Run smarter. Grow with clarity.</p>
             </div>
           </Link>
         </div>
-        <nav className="hidden items-center gap-6 text-sm font-medium text-[var(--muted)] md:flex">
+        <nav className="hidden items-center gap-5 text-sm font-medium text-[var(--muted)] lg:flex">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -55,7 +56,7 @@ export function PublicHeader({ activePath, backHref, backLabel = "Back" }: Publi
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />
-          <ButtonLink href="/signup" className="whitespace-nowrap px-3 sm:px-4">Start Free</ButtonLink>
+          <ButtonLink href="/signup" className="hidden whitespace-nowrap px-3 sm:inline-flex sm:px-4">Start Free</ButtonLink>
         </div>
       </div>
     </header>

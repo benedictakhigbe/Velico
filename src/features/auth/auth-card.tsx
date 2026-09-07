@@ -14,11 +14,11 @@ type AuthCardProps = {
 
 export function AuthCard({ title, subtitle, message, backHref, children, footer }: AuthCardProps) {
   return (
-    <main className="velico-hero-scene grid min-h-screen place-items-center px-4 py-10">
+    <main className="velico-hero-scene grid min-h-screen place-items-center px-3 py-6 sm:px-4 sm:py-10">
       <section
         data-velico-animate
         data-velico-hover
-        className="velico-card w-full max-w-md rounded-[8px] border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_94%,transparent)] p-6 shadow-xl backdrop-blur sm:p-8"
+        className="velico-card w-full max-w-md rounded-[8px] border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_94%,transparent)] p-4 shadow-xl backdrop-blur sm:p-8"
       >
         {backHref ? (
           <Link
@@ -29,7 +29,7 @@ export function AuthCard({ title, subtitle, message, backHref, children, footer 
             Back
           </Link>
         ) : null}
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-6 flex items-center justify-between gap-3 sm:mb-8">
           <Link href="/" className="inline-flex items-center gap-3">
             <VelicoMark />
             <span className="text-xl font-bold text-[var(--heading)]">Velico</span>
@@ -37,7 +37,7 @@ export function AuthCard({ title, subtitle, message, backHref, children, footer 
           <ThemeToggle />
         </div>
         <div className="mb-6 rounded-[8px] border border-[var(--border)] bg-[var(--surface-muted)] p-4">
-          <h1 className="text-2xl font-semibold tracking-normal text-[var(--heading)]">{title}</h1>
+          <h1 className="text-xl font-semibold tracking-normal text-[var(--heading)] sm:text-2xl">{title}</h1>
           <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{subtitle}</p>
         </div>
         {message ? (

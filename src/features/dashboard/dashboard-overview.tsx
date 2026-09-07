@@ -75,7 +75,7 @@ export function DashboardOverview({ ownerName, planCode }: DashboardOverviewProp
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--brand-blue)]">
               AI command center
             </p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-normal text-[var(--heading)]">
+            <h1 className="mt-3 text-2xl font-semibold tracking-normal text-[var(--heading)] sm:text-3xl">
               {getGreeting()}, {ownerName}
             </h1>
             <p className="mt-2 text-lg font-semibold text-[var(--heading)]">
@@ -95,7 +95,7 @@ export function DashboardOverview({ ownerName, planCode }: DashboardOverviewProp
               <button
                 type="submit"
                 data-velico-ripple
-                className="relative isolate inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-[8px] bg-[var(--brand-blue)] px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--brand-deep)] active:scale-[0.98]"
+                className="relative isolate inline-flex min-h-12 items-center justify-center gap-2 overflow-hidden rounded-[8px] bg-[var(--brand-blue)] px-5 py-2 text-sm font-semibold leading-5 text-white shadow-sm transition hover:bg-[var(--brand-deep)] active:scale-[0.98]"
               >
                 <Send className="size-4" aria-hidden="true" />
                 {canAskAi ? "Ask Velico" : "Upgrade for AI"}
@@ -144,7 +144,7 @@ export function DashboardOverview({ ownerName, planCode }: DashboardOverviewProp
 
       <div className="grid gap-6 xl:grid-cols-[0.85fr_1.15fr]">
         <Card data-velico-animate data-velico-hover className="p-5">
-          <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-lg font-semibold text-[var(--heading)]">Velico Business Score</h2>
               <p className="mt-1 text-sm text-[var(--muted)]">Performance indicator, not financial advice.</p>
@@ -195,7 +195,7 @@ export function DashboardOverview({ ownerName, planCode }: DashboardOverviewProp
 
       <div className="grid gap-6 xl:grid-cols-[1.25fr_0.75fr]">
         <Card data-velico-animate className="p-5">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-semibold text-[var(--heading)]">Velico recommends</h2>
             <ButtonLink href={canAskAi ? "/app/ai" : "/app/billing?feature=%2Fapp%2Fai"} variant="secondary">
               {canAskAi ? "Ask why" : "Upgrade"}

@@ -20,12 +20,12 @@ export default async function OnboardingPage({
   }
 
   return (
-    <main className="velico-hero-scene min-h-screen px-4 py-8 sm:px-6">
+    <main className="velico-hero-scene min-h-screen px-3 py-6 sm:px-6 sm:py-8">
       <section
         data-velico-animate
         className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-start"
       >
-        <div className="rounded-[8px] border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_92%,transparent)] p-6 shadow-xl backdrop-blur sm:p-8">
+        <div className="rounded-[8px] border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_92%,transparent)] p-4 shadow-xl backdrop-blur sm:p-8">
           <Link
             href="/login"
             className="mb-6 inline-flex h-10 items-center gap-2 rounded-[8px] border border-[var(--border)] bg-[var(--surface)] px-3 text-sm font-semibold text-[var(--heading)] transition hover:bg-[var(--surface-muted)]"
@@ -37,7 +37,7 @@ export default async function OnboardingPage({
             <Sparkles className="size-3.5" aria-hidden="true" />
             Workspace setup
           </p>
-          <h1 className="mt-4 text-3xl font-semibold text-[var(--heading)]">
+          <h1 className="mt-4 text-2xl font-semibold text-[var(--heading)] sm:text-3xl">
             Tell Velico about your business
           </h1>
           <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
@@ -52,7 +52,7 @@ export default async function OnboardingPage({
             ))}
           </div>
         </div>
-        <div className="rounded-[8px] border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_94%,transparent)] p-6 shadow-xl backdrop-blur sm:p-8">
+        <div className="rounded-[8px] border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_94%,transparent)] p-4 shadow-xl backdrop-blur sm:p-8">
         {typeof params.message === "string" ? (
           <p className="mt-5 rounded-[8px] border border-[var(--danger)] bg-[var(--danger-soft)] px-3 py-2 text-sm text-[var(--danger)]">
             {params.message}

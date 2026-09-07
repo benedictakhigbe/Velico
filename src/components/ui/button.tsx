@@ -26,7 +26,7 @@ export function Button({
       type={type}
       data-velico-ripple
       className={cn(
-        "relative isolate inline-flex h-11 items-center justify-center gap-2 overflow-hidden rounded-[8px] px-4 text-sm font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100",
+        "relative isolate inline-flex min-h-11 min-w-0 max-w-full items-center justify-center gap-2 overflow-hidden rounded-[8px] px-4 py-2 text-center text-sm font-semibold leading-5 transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:active:scale-100",
         variants[variant],
         className,
       )}
@@ -48,7 +48,7 @@ export function ButtonLink({
     <Link
       data-velico-ripple
       className={cn(
-        "relative isolate inline-flex h-11 items-center justify-center gap-2 overflow-hidden rounded-[8px] px-4 text-sm font-semibold transition active:scale-[0.98]",
+        "relative isolate inline-flex min-h-11 min-w-0 max-w-full items-center justify-center gap-2 overflow-hidden rounded-[8px] px-4 py-2 text-center text-sm font-semibold leading-5 transition active:scale-[0.98]",
         variants[variant],
         className,
       )}

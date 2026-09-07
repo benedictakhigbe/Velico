@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ExperienceMotion } from "@/components/motion/experience-motion";
 import { RouteLoadingIndicator } from "@/components/navigation/route-loading-indicator";
+import { CookieConsent } from "@/components/privacy/cookie-consent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <RouteLoadingIndicator />
         <ExperienceMotion />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
